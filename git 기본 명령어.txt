@@ -1,0 +1,10 @@
+git add .
+git commit -m '입력할 내용'
+git push origin main
+
+git config --global user.email "github 등록한 본인 이메일"
+
+git clone 코드깃주소
+
+git pull origin main
+
