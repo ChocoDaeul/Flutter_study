@@ -1,0 +1,24 @@
+1.git bash 설치
+2.git config --global user.email "github 등록한 본인 이메일"
+3.git clone 코드깃주소
+
+// 집가기전에
+1.git add .
+2.git commit -m '입력할 내용'
+3.git push origin main
+
+// 집도착 후 
+git pull origin main
+
+// 집에서 공부 후
+1.git add .
+2.git commit -m '입력할 내용'
+3.git push origin main
+
+// 회사 도착 후
+git pull origin main
+
+// 회사에서 다하고 난후
+1.git add .
+2.git commit -m '입력할 내용'
+3.git push origin main
