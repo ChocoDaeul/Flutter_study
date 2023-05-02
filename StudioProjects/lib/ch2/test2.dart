@@ -637,6 +637,58 @@ main() {
   // MyClass obj2 = MyClass();
   // // obj2.data2 = 'world'; // 오류
 
+  //팩토리 생성자 올바른 예 생성
+  // var obj = MyClass();
+
+  // 캐시 알고리즘 구현 예
+  // var image1 = Image('a.jpg');
+  // var image2 = Image('a.jpg');
+  // print('image1 == image2 : ${image1 == image2}'); // image1 == image2 = true
+
+  // 상수 생성자의 객체 생성
+  // var obj1 = MyClass(10);
+  // var obj2 = MyClass(20);
+  // print("'obj1.data : ${obj1.data1}, obj2.data : ${obj2.data1}");
+  
+  // 상수 객체 생성 오류
+  // var obj1 = const MyClass();//오류
+
+  // 상수 객체 생성
+  // var obj1 = const MyClass(10);
+
+  //일반 객체 선언
+//   var obj1 = MyClass(10);
+//   var obj2 = MyClass(20);
+//   print('obj1 == obj2 : ${obj1 == obj2}'); // false
+// 같은 값으로 상수 객체 선언
+// var obj1 = const MyClass(10);
+// var obj2 = const MyClass(10);
+// print('obj1 == obj2 : ${obj1 == obj2}'); //true
+// 다른 값으로 상수 객체 선언
+// var obj1 = const MyClass(10);
+// var obj2 = const MyClass(20);
+// print('obj1 == obj2 : ${obj1 == obj2}'); //false
+// 같은 값으로 상수 객체와 일반 객체 선언
+// var obj1 = const MyClass(10);
+// var obj2 = MyClass(10);
+// print('obj1 == obj2 : ${obj1 == obj2}'); //false
+
+// 함수에서 널 불허 지역 변수 초기화
+// var obj = SubClass();
+// obj.myFun();
+// print('obj.data : ${obj.myData}');
+//
+// //오버라이딩
+// var obj = SubClass();
+// obj.myFun();
+// print('obj.data : ${obj.myData}');
+//
+// 부모클래스의 멤버에 접근하기
+// var obj = SubClass();
+// obj.myFun();
+
+//자식 클래스의 생성자 호출(부모 생성자는 자동 호출됨)
+var obj = SubClass();
 }
 
 // const String data1 = 'hello';
@@ -759,14 +811,201 @@ main() {
 //   User() {}
 // }
 //멤버 초기화하기(멤버 초기화 생성자)
-class User {
-  late String name;
-  late int age;
-  User(String name, int age) {
-    this.name = name;
-    this.age = age;
+// class User {
+//   late String name;
+//   late int age;
+//   User(String name, int age) {
+//     this.name = name;
+//     this.age = age;
+//   }
+//   sayHello() {
+//     print('name : $name, age : $age');
+//   }
+// }
+
+//멤버 초기화 생성자 단순화
+// class User{
+//   late String name;
+//   late int age;
+//   User(this.name,this.age);
+//
+//   sayHello(){
+//     print('name : $name, age : $age');
+//   }
+// }
+
+// 리스트의 데이터로 초기화
+// class MyClass {
+//   late int data1;
+//   late int data2;
+//
+//   MyClass(List<int> args)
+//     : this.data1 = args[0] ,
+//       this.data2 = args[1] {};
+// }
+
+//클래스의 멤버 함수의 반환값으로 초기화
+// class MyClass {
+//   late int data1;
+//   late int data2;
+//
+//   MyClass(int arg1, int arg2)
+//     : this.data1 = calFun(arg1),
+//       this.data2 = calFun(arg2) {}
+//
+//   static int calFun(int arg){
+//     return arg * 10;
+//   }
+//
+//   printData() {
+//     print('$data1, $data2');
+//   }
+// }
+
+//자바로 작성한 생성자 오버로딩
+// public class MyClass{
+//   MyClass() {}
+//   MyClass(int data1) {}
+//   MyClass(int data1, int data2) {}
+// }
+
+// 다트로 작성한 생성자 오버로딩(명명된 생성자 선언)
+// class MyClass {
+//   MyClass(){}
+//   MyClass.first(){}
+//   MyClass.second(){}
+// }
+// //명명된 생성자로 객체 생성
+// var obj1 = MyClass();
+// var obj2 = MyClass.first();
+// var oibj3 = MyClass.second();
+
+// this() 잘못된 호출 예
+// class MyClass{
+//   MyClass(int data1, int data2) {
+//     print('MyClass().... call');
+//   }
+  // MyClass.first(int arg){
+  //   this(arg,0);
+  // }
+  // MyClass.first(int arg) : this(arg, 0) {} // 오류
+  // MyClass.first(int arg) : this(arg,0); // 성공
+  // MyClass.first(int arg) : this(arg,0), this.data1=arg1; // 오류
+// }
+
+// 명명된 생성자 중첩 호출
+//   class MyClass{
+//   late int data1;
+//   late int data2;
+//   MyClass(this.data1,this.data2);
+//   MyClass.first(int arg) : this(arg,0); // 기본 생성자(MyClass) 호출
+//   MyClass.second() : this.first(0); // 명명된 생성자(MyClass.first) 호출
+//   }
+
+// 팩토리 생성자 잘못된 선언 예
+// class MyClass {
+//   factory MyClass() { // 오류
+//    
+//   }
+// }
+// 잘못된 객체 반환 예
+// class MyClass{
+//   factory MyClass() {
+//     return null; // 오류
+//   }
+// }
+
+// //팩토리 생성자 올바른 예
+// class MyClass{
+//   MyClass._instance();
+//   factory MyClass() {
+//     return MyClass._instance();
+//   }
+// }
+
+// 캐시 알고리즘
+// class Image{
+//   late String url;
+//   static Map<String, Image> _cache = <String , Image> {};
+//   Image._instance(this.url);
+//   factory Image(String url){
+//     if (_cache[url] == null) {        // 전달 받은 식별자가 캐시에 없으면
+//       var obj = Image._instance(url); // 해당 식별자로 객체를 새로 생성하고
+//       _cache[url] = obj;              // 캐시에 추가
+//     }
+//     return _cache[url]!;              // 캐시에서 식별자에 해당하는 객체 반환
+//   }
+// }
+
+//상수 생성자 선언
+// class MyClass {
+//   const MyClass();
+// }
+//상수 생성자 잘못 선언한 예
+// class MyClass {
+//   int data1;
+//   const MyClass();//오류
+// }
+// 상수 생성자의 객체 생성
+// class MyClass{
+//   final int data1;
+//   const MyClass(this.data1);
+// }
+// 상수 객체 생성 오류
+
+// 상수 객체 생성
+// class MyClass{
+//   final int data1;
+//   const MyClass(this.data1);
+// }
+
+//함수에서 널 불허 지역 변수 초기화
+// class SuperClass {
+//   int myData = 10;
+//   void myFun() {
+//     print('Super .. myFun()...');
+//   }
+//
+// }
+// class SubClass extends SuperClass{
+//
+// }
+
+// 오버라이딩
+// class SuperClass {
+//   int myData = 10;
+//   void myFun() {
+//     print('Super .. myFun()....');
+//   }
+// }
+// class SubClass extends SuperClass{
+//   int myData = 20;
+//   void myFun() {
+//     print('Sub...myFun()....');
+//   }
+// }
+// 부모 클래스의 멤버에 접근하기
+// class SuperClass {
+//   int myData = 10;
+//   void myFun(){
+//     print('Super..myFun()...');
+//   }
+// }
+// class SubClass extends SuperClass{
+//   int myData = 20;
+//
+//   void myFun(){
+//     super.myFun();
+//     print('Sub...myFun()..myData : $myData, super.myData : ${super.myData}');
+//   }
+// }
+
+//자식 클래스의 생성자 호출(부모 생성자는 자동 호출됨)
+class SuperClass{
+  SuperClass() {
+
   }
-  sayHello() {
-    print('name : $name, age : $age');
-  }
+}
+class SubClass extends SuperClass{
+  SubClass(){}
 }
