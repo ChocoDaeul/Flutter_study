@@ -439,8 +439,174 @@ main() {
 //   some(10,data3: true, data2: 'hello'); // 성공
 //   some(data2:'hello',data3: true,10);//성공
 
+// 함수의 매개변수 기본인자 설정하기
+//   String myFun({String data = 'hello'}) {
+//     return data;
+//   }
+//   print('myFun() result : ${myFun()}'); // out put : myFun() result : hello
+//   print('myFun(world) result : ${myFun(data : 'world')}'); // myFun(world) result : world
+
+// 명명된 필수 매개변수 선언
+//   someFun({required int arg1}) {
+//     print('someFun() .. arg1 : $arg1');
+//   }
+//   // someFun(); // 오류
+//   someFun(arg1 : 10); // 성공
+
+// 옵셔널 위치 매개변수 선언
+//   void some(int arg1, [String arg2 = 'hello' , bool arg3 = false]){
+//
+//   }
+// // 옵셔널 위치 매개변수 호출
+//   some(); // 오류
+//   some(10); // 성공
+//   some(10, arg2 = 'world', arg3 = true); //오류
+//   some(10,'world',true); // 성공
+//   some(10, true, 'world'); // 오류
+//   some(10, 'world'); // 성공
+//   some(10, true); // 오류
+
+// // 함수 타입 선언
+//   void some() {
+//   }
+//   Function data2 = some;
+//
+// // 함수를 활용한 예
+//   int plus(int no){
+//     return no + 10;
+//   }
+//   int multiply(int no){
+//     return no * 10;
+//   }
+//   Function testFun(Function argFun) {
+//     print('argFun : ${argFun(20)}');
+//     return multiply;
+//   }
+//   var result = testFun(plus);
+//   print('result : ${result(20)}');
+
+  // //함수 타입 제한
+  // some(int f(int a)) {
+  //   f(30);
+  // }
+  // some((int a) {
+  //   return a +20;
+  // });
+
+  // 익명 함수 사용
+  // fun1(arg) {
+  //   return 10;
+  // }
+  // Function fun2 = (arg) {
+  //   return 10;
+  // };
+
+  // Getter 와 Setter 호출
+  // name = "world";
+  // print('name : $name');
+
+  //Getter 만 선언
+  // name = 'World'; // 오류
+  // print('name : $name');
+
+  // 나누기 연산자
+  // int a = 8;
+  // print('a / 5 = ${a / 5}'); // a / 5 = 1.6
+  // print('a ~/ 5 = ${a ~/5}'); // a ~/ 5 = 1
+
+  // 타입 확인과 캐스팅
+  // Object obj = User();
+  // // obj.some(); // 오류
+  // if (obj is User) { //타입 확인 , 자동 형 변환
+  //   obj.some();
+  // }
+  //
+  // Object obj1 = User();
+  // (obj1 as User).some();
+
+  // 객체 생성과 멤버 접근
+  // var user = User();
+  // user.name = 'kkang';
+  // user.age = 15;
+  // user.some();
+  //
+  // // 캐스케이드 연산자로 객체 이름 생략
+  // User()
+  //   ..name = 'kkang'
+  //   ..age = 30
+  //   ..some();
+
+  // for 문 사용 예제
+  // var list = [10, 20, 30];
+  // for(var i = 0; i < list.length; i++) {
+  //   print(list[i]);
+  // }
+  //
+  // // in 연산자로 간소화한 반복문
+  // for (var x in list) {
+  //   print(x);
+  // }
+
+  // switch~case문 잘못 사용한 예(라고는 되어있는데 오류가 안남)
+  // some(arg) {
+  //   switch(arg) {
+  //     case 'A':
+  //       print('A');
+  //     case 'B':
+  //       print('B');
+  //   }
+  // }
+  // some('A'); // 'A'
+
+  //switch~case문 올바른 사용 예
+  // some(arg) {
+  //   switch(arg) {
+  //     case 'A' :
+  //       print('A');
+  //       break;
+  //     case 'B' :
+  //       print('B');
+  //   }
+  // }
+  // some('A'); // 'A'
+
+  // 예외 던지기와 예외 처리
+  // 예외 던지기
+  // some() {
+  //   throw Exception('my exception');
+  // }
+  // some();
+
+  // 문자열 던지기
+  // some() {
+  //   throw 'my exception';
+  // }
+  // some();
+
+  // 사용자 정의 객체 던지기
+  // some();
+
+  //try~on~finally 예외 처리
+  // some() {
+  //   throw FormatException('my exception');
+  // }
+  // try{
+  //   print('step1....');
+  //   some();
+  //   print('step2....');
+  // }on FormatException {
+  //   print('step3....');
+  // }on Exception{
+  //   print('step4....');
+  // } finally {
+  //   print('step5....');
+  // }
+  // print('step6....');
+
+
 
 }
+
 // const String data1 = 'hello';
 //
 // class User {
@@ -495,3 +661,42 @@ main() {
 //
 //   }
 // }
+
+// // Getter와 Setter 선언
+// String _name = 'Hello';
+//
+// String get name {
+//   return _name.toUpperCase();
+// }
+// set name(value) {
+//   _name = value;
+// }
+
+// Getter만 선언한 예
+//   String _name = 'Hello';
+//   String get name {
+//     return _name.toUpperCase();
+//   }
+
+// 타입 확인과 캐스팅
+//   class User {
+//     void some() {
+//       print("User ... some()...");
+//     }
+//   }
+
+// User 클래스 선언
+//   class User {
+//   String? name;
+//   int? age;
+//
+//   some() {
+//     print('name: $name, age: $age');
+//   }
+// }
+
+  // 사용자 정의 객체 던지기
+  // class User{}
+  // some() {
+  // throw User();
+  // }
