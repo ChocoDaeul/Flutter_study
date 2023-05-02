@@ -602,8 +602,40 @@ main() {
   //   print('step5....');
   // }
   // print('step6....');
+  // some() {
+  //   throw FormatException('my exception');
+  // }
+  // try{
+  //     print('step1....');
+  //     some();
+  //     print('step2....');
+  //   }on FormatException catch(e) {
+  //     print('step3.... $e');
+  //   }on Exception catch(e){
+  //     print('step4.... $e');
+  //   } finally {
+  //     print('step5....');
+  //   }
+  //   print('step6....');
+  //
+  // try{
+  //   some();
+  // }
+  // catch(e) {
+  //   print('catch....$e');
+  // }
 
-
+  // // 객체 생성 및 객체 멤버 이용
+  // User user1 = User();
+  // user1.sayHello();
+  //
+  // // MyClass.data1; //오류
+  // MyClass obj = MyClass();
+  // obj.data1 = 'world';
+  //
+  // MyClass.data2 = 'world';
+  // MyClass obj2 = MyClass();
+  // // obj2.data2 = 'world'; // 오류
 
 }
 
@@ -700,3 +732,41 @@ main() {
   // some() {
   // throw User();
   // }
+
+// // 클래스 선언
+//   class User {
+//   String name = 'kkang';
+//   int age = 10;
+//
+//   void sayHello() {
+//     print('Hello $name, age : $age');
+//   }
+//   }
+// 클래스 멤버 선언
+// class MyClass {
+//   String data1 = 'hello';
+//   static String data2 = 'hello';
+//
+//   myFun1() {
+//     print('myFun1 call.....');
+//   }
+//   static myFun2() {
+//     print('myFun2 call......');
+//   }
+// }
+// //클래스 선언 (기본 생성자를 추가한 예)
+// class User{
+//   User() {}
+// }
+//멤버 초기화하기(멤버 초기화 생성자)
+class User {
+  late String name;
+  late int age;
+  User(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+  sayHello() {
+    print('name : $name, age : $age');
+  }
+}
