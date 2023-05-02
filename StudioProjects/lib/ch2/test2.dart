@@ -265,7 +265,7 @@ main() {
   //   a2 = null;
   //   a3 = null;
   // }
-  
+
   // // 자동 형 변환
   // int a1 = 10;
   // int? a2 = 10;
@@ -354,12 +354,93 @@ main() {
   // result = data4 ?? 'world';
   // print('result : $result');
 
+// 매개변수 타입에 맞는 데이터로 호출
+//   void some1(int? a) {
+//
+//   }
+//   some1(10);
+//   some1(null);
+//   some1('hello'); // 오류
 
-  }
+// var 타입 매개변수
+// void some2(var a){
+//   a = 20;
+//   a = 'world';
+//   a = true;
+//   a = null;
+// }
+//
+// some2(); // 매개 변수에 값을 전달하지 않아서 오류
+// some2(10);
+// some2('hello');
+//   }
+
+//매개변수 이름 생략 -> dynamic 타입
+//   void some3(a) {
+//     // dynamic 타입
+//     a = 20;
+//     a = 'world';
+//     a = true;
+//     a = null;
+//   }
+//   some3(); // 값을 전달하지 않아서 오류
+//   some3(10);
+
+// 함수의 반환 타입
+// void some1() {
+//
+// }
+// int some2() {
+//   return 10;
+// }
+
+// 반환 타입이 dynamic인 함수에서 return 문 생략
+// dynamic some1() {
+//   return 10;
+// }
+// some2() {
+//   return 10;
+// }
+// some3() {
+//
+// }
+//
+// print('some1 result : ${some1()}');
+// print('some2 result : ${some2()}');
+// print('some3 result : ${some3()}');
+
+//화살표 함수
+// void printUser1() {
+//   print('hello world');
+// }
+// void printUser2() => print('hello world');
+//
+// printUser1();
+// printUser2();
+
+//함수 호출 예
+//   void some(int a, String b, bool c){
+//
+// }
+//   some(); //오류
+//   some('hello',true,10); //오류
+//   some(10,'hello',true); // 정상
+
+//명명된 매개변수 선언
+//   void some1({String? data2, bool? data3}, int data1) {} // 오류
+//   void some2(int data1,{String? data2, bool? data3},{int? data4}) {} //오류
+//   void some3(int data1,{String? data2, bool? data3}) {} // 성공
+// 명명된 매개 변수 호출 예
+//   void some(int data1,{String? data2, bool? data3}) {}
+//   some(); //오류
+//   some(10); // 성공
+//   some(10,'hello',true); // 오류
+//   some(10,data2: 'hello',data3: true);//성공
+//   some(10,data3: true, data2: 'hello'); // 성공
+//   some(data2:'hello',data3: true,10);//성공
 
 
-
-
+}
 // const String data1 = 'hello';
 //
 // class User {
@@ -388,6 +469,29 @@ main() {
 //   }
 // }
 
+// 함수 선언 위치
+// void some1() {
+//
+// }
+// void some2() {
+//   void some3(){
+//
+//   }
+//   some3();
+// }
+//
+// class MyClass {
+//   void some4() {
+//
+//   }
+// }
 
-// 아영이가 Git을 알려줬어요
-// 로아는 귀여워
+// 다트는 함수 오버로딩을 지원 하지 않음
+// class MyClass {
+//   void some() {
+//
+//   }
+//   void some(int a) { // 함수 이름 중복 오류
+//
+//   }
+// }
