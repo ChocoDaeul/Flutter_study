@@ -698,6 +698,20 @@ main() {
 // User user = MyClass();
 // print('${user.greet('lee')}');
 
+// var obj = MyMixin();//오류 (믹스인은 생성자가 없으므로 객체도 생성 불가능)
+// 믹스인 사용하기(믹스인을 다중 상속처럼 활용한 예)
+// var obj = MyClass();
+// obj.sayHello();
+
+// 믹스인 타입 객체 선언
+// var obj = MyClass();
+//
+// if(obj is MyMixin) {
+//   print('obj is MyMixin');
+// }else{
+//   print('obj is not MyMixin');
+// }
+// MyMixin obj2 = MyClass();
 
 }
 
@@ -1089,17 +1103,17 @@ main() {
 //   }
 // }
 //일반 클래스
-class User {
-  int no;
-  String name;
-
-  User(this.no, this.name);
-  String greet(String who) => "Hello, $who. I'm $name. no is $no";
-}
-//User의 자식 클래스 선언
-class MySubClass extends User {
-  MySubClass(super.name, super.no);
-}
+// class User {
+//   int no;
+//   String name;
+//
+//   User(this.no, this.name);
+//   String greet(String who) => "Hello, $who. I'm $name. no is $no";
+// }
+// //User의 자식 클래스 선언
+// class MySubClass extends User {
+//   MySubClass(super.name, super.no);
+// }
 //인터페이스 구현 클래스 선언
 // class MyClass implements User{} // 오류
 
@@ -1118,9 +1132,95 @@ class MySubClass extends User {
 // class MyClass implements User, MyInterface{}
 
 //믹스인(믹스인 선언)
-mixin MyMixin {
-  int data1 = 10;
-  void myFun1() {
-    print('MyMixin... myFun()...');
+// mixin MyMixin {
+//   int data1 = 10;
+//   void myFun1() {
+//     print('MyMixin... myFun()...');
+//   }
+// }
+
+//믹스인에 생성자 선언 오류(믹스인은 클래스가 아니므로 생성자는 선언할수 없다)
+// mixin MyMixin{
+//   int data1 = 10;
+//   static int data2 = 20;
+//
+//   MyMixin() {} // 오류
+//   void myFun1() {
+//     print('MyMixin... myFun()...');
+//   }
+//   static void myFun2(){}
+// }
+// 믹스인 객체 생성 오류
+// mixin MyMixin {
+//   int data1 = 10;
+//   void myFun1() {
+//     print('MyMixin... myFun()...');
+//   }
+// }
+// 믹스인 사용하기(다중 상속 오류)
+// class Super1 {}
+// class Super2 {}
+// class MySub extends Super1, Super2 {} // 오류(하나의 클래스만 상속 가능)
+//믹스인 멤버 이용
+// mixin MyMixin {
+//   int mixinData = 10;
+//   void mixInFun() {
+//     print('MyMixin... mixInFun()...');
+//   }
+// }
+//
+// class MyClass with MyMixin {
+//   void sayHello() {
+//     print('data : $mixinData');
+//     mixInFun();
+//   }
+// }
+// 믹스인을 다중 상속처럼 활용한 예
+// mixin MyMixin {
+//   int mixinData = 10;
+//   void mixInFun() {
+//     print('MyMixin... mixInFun()...');
+//   }
+// }
+// class MySuper {
+//   int superData = 20;
+//   void superFun() {
+//     print('MySuper... superFun()');
+//   }
+// }
+//
+// class MyClass extends MySuper with MyMixin {
+//   void sayHello() {
+//     print('class data : $superData, mixin data : $mixinData');
+//     mixInFun();
+//     superFun();
+//   }
+// }
+// 믹스인 타입 객체 선언
+// mixin MyMixin {
+//   int mixinData = 10;
+//   void mixInFun() {
+//     print('MyMixin... mixInFun()...');
+//   }
+// }
+// class MyClass with MyMixin {}
+// 믹스인 사용 제약(믹스인 타입 제한)
+// mixin MyMixin on MySuper{}
+// class MySuper {}
+// class MyClass extends MySuper with MyMixin{}// 성공
+// class MySomeClass with MyMixin{} // 오류
+// with로 클래스 이용하기
+class SomeClass{
+  int someData = 10;
+}
+class MyClass with SomeClass{
+  void sayHello(){
+    print('someData : $someData');
   }
 }
+// 생성자가 있는 클래스를 with로 사용하면 오류
+class User{
+  User() {}
+}
+
+class MyClass with User {}//오류
