@@ -688,7 +688,17 @@ main() {
 // obj.myFun();
 
 //자식 클래스의 생성자 호출(부모 생성자는 자동 호출됨)
-var obj = SubClass();
+// var obj = SubClass();
+
+//부모 클래스의 멤버 변수 초기화1
+// var obj = SubClass('kkang', 10);
+// print('${obj.name},${obj.age}');
+
+//인터페이스 타입 객체 선언
+// User user = MyClass();
+// print('${user.greet('lee')}');
+
+
 }
 
 // const String data1 = 'hello';
@@ -1001,11 +1011,116 @@ var obj = SubClass();
 // }
 
 //자식 클래스의 생성자 호출(부모 생성자는 자동 호출됨)
-class SuperClass{
-  SuperClass() {
+// class SuperClass{
+//   SuperClass() {
+//
+//   }
+// }
+// class SubClass extends SuperClass{
+//   SubClass() : super() {} // 부모 생성자 호출
+// }
 
-  }
+//부모 생성자 호출의 잘못된 예
+// class SuperClass{
+//   SuperClass(int arg) {}
+//   SuperClass.first() {}
+// }
+// class SubClass extends SuperClass {
+//   SubClass() : super() {} //오류
+// }
+
+//부모 생성자 호출의 올바른 예
+//   class SuperClass{
+//     SuperClass(int arg){}
+//     SuperClass.first(){}
+//   }
+//   class SubClass extends SuperClass {
+//     SubClass() : super(10) {}
+//     SubClass.name() : super.first(){}
+// }
+
+//부모 클래스 초기화(생성자의 매개변수로 멤버 변수 초기화)
+//   class User{
+//     String name;
+//     int age;
+//     User(this.name, this.age);
+//   }
+//부모 클래스의 멤버 변수 초기화1
+//   class SuperClass{
+//     String name;
+//     int age;
+//     SuperClass(this.name, this.age){}
+//   }
+//   class SubClass extends SuperClass{
+//     SubClass(String name, int age) : super(name, age){} //부모 클래스 멤버 초기화
+//   }
+
+//부모 클래스의 멤버 변수 초기화1
+// class SuperClass{
+//   String name;
+//   int age;
+//   SuperClass(this.name, this.age){}
+// }
+// class SubClass extends SuperClass{
+//   SubClass(super.name, super.age){} //부모 클래스 멤버 초기화 간소화
+// }
+
+//추상클래스(추상 함수 선언)
+// class User{
+//   void some(); //오류
+// }
+// abstract class User{
+//   void some(); // 성공
+// }
+// //추상 함수 재정의
+// class Customer extends User{
+//   @override
+//   void some() {
+//   }
+// }
+
+// 인터페이스
+// 자바로 구현 했을 때
+// interface MyInterface { //인터페이스 선언
+//   void fun1();
+// }
+// public class MyClass implements MyInterface { // 인터페이스 구현
+//   public void fun1() { // 함수 재정의
+//   }
+// }
+//일반 클래스
+class User {
+  int no;
+  String name;
+
+  User(this.no, this.name);
+  String greet(String who) => "Hello, $who. I'm $name. no is $no";
 }
-class SubClass extends SuperClass{
-  SubClass(){}
+//User의 자식 클래스 선언
+class MySubClass extends User {
+  MySubClass(super.name, super.no);
+}
+//인터페이스 구현 클래스 선언
+// class MyClass implements User{} // 오류
+
+//인터페이스의 모든 멤버 재정의
+// class MyClass implements User {
+//   int no = 10;
+//   String name = 'kim';
+//
+//   @override
+//   String greet(String who) {
+//     return 'hello';
+//   }
+// }
+// 한 클래스에 여러 인터페이스 지정
+// class MyInterface{}
+// class MyClass implements User, MyInterface{}
+
+//믹스인(믹스인 선언)
+mixin MyMixin {
+  int data1 = 10;
+  void myFun1() {
+    print('MyMixin... myFun()...');
+  }
 }
