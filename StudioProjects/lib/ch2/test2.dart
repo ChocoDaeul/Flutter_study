@@ -1210,17 +1210,17 @@ main() {
 // class MyClass extends MySuper with MyMixin{}// 성공
 // class MySomeClass with MyMixin{} // 오류
 // with로 클래스 이용하기
-class SomeClass{
-  int someData = 10;
-}
-class MyClass with SomeClass{
-  void sayHello(){
-    print('someData : $someData');
-  }
-}
-// 생성자가 있는 클래스를 with로 사용하면 오류
-class User{
-  User() {}
-}
-
-class MyClass with User {}//오류
+// class SomeClass{
+//   int someData = 10;
+// }
+// class MyClass with SomeClass{
+//   void sayHello(){
+//     print('someData : $someData');
+//   }
+// }
+// // 생성자가 있는 클래스를 with로 사용하면 오류
+// class User{
+//   User() {}
+// }
+//
+// class MyClass with User {}//오류
