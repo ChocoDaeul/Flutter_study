@@ -8,7 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   Widget platformUI() {
-    if(Platform.isIOS) {
+    if(Platform.isAndroid) {
       return CupertinoApp(
         debugShowCheckedModeBanner: false,
         theme: CupertinoThemeData(brightness: Brightness.light),
@@ -27,16 +27,34 @@ class MyApp extends StatelessWidget {
         ),
       );
     }
-    else if (Platform.isAndroid)
+    else if (Platform.isIOS) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Material Title'),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(onPressed: (){},
+                  child: Text('Click'),),
+              Center(
+                child: Text('Hello World'),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return Text(
+        'unKnown Device',
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+      );
+    }
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-    home : Scaffold(
-    appBar : AppBar(
-    title : Text('Test'),
-    ),
-
-    ));
+    return platformUI();
   }
 }
