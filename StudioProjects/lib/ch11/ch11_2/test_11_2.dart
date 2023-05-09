@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-void main(){
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    home : Scaffold(
-    appBar : AppBar(
-    title : Text('Switch Test'),
-    ),
-    body: TestScreen(),
-    ));
+        debugShowCheckedModeBanner: false, //디버그 배너 해제
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Switch Test'),
+          ),
+          body: TestScreen(),
+        ));
   }
 }
 
@@ -24,7 +24,6 @@ class TestScreen extends StatefulWidget {
 }
 
 class _TestScreenState extends State<TestScreen> {
-
   bool? isChecked = true;
   String? selectPlatform;
   double sliderValue = 5.0;
@@ -35,27 +34,30 @@ class _TestScreenState extends State<TestScreen> {
     return Column(
       children: [
         Text('Checkbox Test'),
-        Row(
+        Column(
           children: [
-            Checkbox(value: isChecked,
-                onChanged: (bool? value){
-                  setState(() {
-                    isChecked = value;
-                  });
-                }),
-            Text('checkbox value is $isChecked'),
-
-
-
+            Row(
+              children: [
+                Checkbox(
+                    value: isChecked,
+                    onChanged: (bool? value) {
+                      setState(() {
+                        isChecked = value;
+                      });
+                    }),
+                Text('checkbox value is $isChecked'),
+                Spacer(),
+              ],
+            ),
           ],
         ),
         Text('Radio Test'),
         Row(
           children: [
             Radio(
-              value:"android",
-              groupValue : selectPlatform,
-              onChanged: (String? value){
+              value: "android",
+              groupValue: selectPlatform,
+              onChanged: (String? value) {
                 setState(() {
                   selectPlatform = value;
                 });
@@ -67,9 +69,9 @@ class _TestScreenState extends State<TestScreen> {
         Row(
           children: [
             Radio(
-              value:"ios",
-              groupValue : selectPlatform,
-              onChanged: (String? value){
+              value: "ios",
+              groupValue: selectPlatform,
+              onChanged: (String? value) {
                 setState(() {
                   selectPlatform = value;
                 });
@@ -79,21 +81,25 @@ class _TestScreenState extends State<TestScreen> {
           ],
         ),
         Text('select platform is $selectPlatform'),
+        Text(''),
         Text('Slider Test'),
         Slider(
             value: sliderValue,
             min: 0,
             max: 10,
-            onChanged:(double value){
+            onChanged: (double value) {
               setState(() {
                 sliderValue = value;
               });
             }),
         Text('slider value is $sliderValue'),
+        SizedBox(
+          height: 30,
+        ),
         Text('Switch Test'),
         Switch(
             value: switchValue,
-            onChanged: (bool value){
+            onChanged: (bool value) {
               setState(() {
                 switchValue = value;
               });
@@ -103,4 +109,3 @@ class _TestScreenState extends State<TestScreen> {
     );
   }
 }
-
