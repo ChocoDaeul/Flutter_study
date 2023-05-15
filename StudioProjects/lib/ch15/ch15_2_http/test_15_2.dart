@@ -64,14 +64,32 @@ class MyAppState extends State<MyApp> {
         print('error.....');
       }
     } finally {
-      print('error..... $e');
-    }
-
+      client.close();
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Test'),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('$result'),
+                ElevatedButton(onPressed: onPressGet, child: Text('GET'),),
+                ElevatedButton(onPressed: onPressPost, child: Text('POST'),),
+                ElevatedButton(
+                  onPressed: onPressClient, child: Text('Client'),),
+
+              ],
+            ),
+          ),
+        )
+    );
   }
 }
